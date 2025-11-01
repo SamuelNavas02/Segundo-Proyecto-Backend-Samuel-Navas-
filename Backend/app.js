@@ -9,13 +9,12 @@ const app = express();
 // Middleware para recibir JSON
 app.use(express.json());
 
-// Puerto
+// Puerto desde .env o 3000 por defecto
 const PORT = process.env.PORT || 3000;
 
-// --- Conexión a MongoDB usando Mongoose ---
-mongoose.connect('mongodb://localhost:27017/miBaseDeDatos', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+// --- Conexión a MongoDB usando Mongoose desde .env ---
+mongoose.connect(process.env.MONGODB_URI, {
+    // Las opciones useNewUrlParser y useUnifiedTopology ya no son necesarias en Mongoose 6+
 })
 .then(() => console.log('✅ Conectado a MongoDB'))
 .catch(err => console.error('❌ Error conectando a MongoDB:', err));
