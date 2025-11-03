@@ -1,11 +1,11 @@
-// Importar Express para crear rutas
 const express = require('express');
 const router = express.Router();
+const usuarioController = require('../controllers/usuarioController');
 
-// Ruta de prueba para usuarios
-router.get('/usuarios', (req, res) => {
-    res.send('Ruta de usuarios funcionando ✅');
-});
+// Crear usuario (POST /usuarios)
+router.post('/', usuarioController.crearUsuario);
 
-// Exportar el router para usarlo en app.js
+// Listar usuarios (GET /usuarios)
+router.get('/', usuarioController.listarUsuarios);
+
 module.exports = router;
