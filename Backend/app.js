@@ -1,7 +1,10 @@
 // Importar librerías
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config(); // para usar variables de entorno
+require('dotenv').config(); // Variables de entorno
+
+// Importar rutas (asegúrate de que el archivo se llama routes/usuarios.js o similar)
+const usuariosRoutes = require('./routes/usuarios'); 
 
 // Crear la app de Express
 const app = express();
@@ -13,11 +16,13 @@ app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
 // --- Conexión a MongoDB usando Mongoose desde .env ---
-mongoose.connect(process.env.MONGODB_URI, {
-    // Las opciones useNewUrlParser y useUnifiedTopology ya no son necesarias en Mongoose 6+
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('✅ Conectado a MongoDB'))
 .catch(err => console.error('❌ Error conectando a MongoDB:', err));
+
+// --- Usar las rutas ---
+app.use('/api', usuariosRoutes); 
+// Esto significa que la ruta real será: http://localhost:3000/api/usuarios
 
 // --- Endpoint inicial para probar ---
 app.get('/', (req, res) => {
