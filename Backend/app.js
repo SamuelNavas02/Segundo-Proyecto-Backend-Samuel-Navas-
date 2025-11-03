@@ -5,15 +5,19 @@ require('dotenv').config(); // Variables de entorno
 
 // Importar rutas
 const usuariosRoutes = require('./routes/usuarios'); 
+const publicacionesRoutes = require('./routes/publicaciones'); // <--- Agregado
 
 // Crear la app de Express
 const app = express();
 
-// Middleware para recibir JSON
+// Middleware para recibir JSON 
 app.use(express.json());
 
 // Montar rutas de usuarios
 app.use('/usuarios', usuariosRoutes);
+
+// Montar rutas de publicaciones
+app.use('/publicaciones', publicacionesRoutes); // <--- Agregado
 
 // Puerto desde .env o 3000 por defecto
 const PORT = process.env.PORT || 3000;
