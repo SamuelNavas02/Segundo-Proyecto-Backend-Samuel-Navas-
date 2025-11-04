@@ -6,7 +6,7 @@ const publicacionSchema = new mongoose.Schema({
   autor: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario', required: true },
   fechaCreacion: { type: Date, default: Date.now },
 
-  // ✅ Relación con los comentarios de esta publicación
+  // Relación con los comentarios de esta publicación
   comentarios: [
     { type: mongoose.Schema.Types.ObjectId, ref: 'Comentario' }
   ]
